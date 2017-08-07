@@ -16,7 +16,10 @@ before_script:
   ## Composer
   - composer self-update
   - composer install --prefer-source --dev
+  - composer install --no-interaction
   - phpenv global "$TRAVIS_PHP_VERSION"
+  - cp .env.travis .env
+  - pear install pear/PHP_CodeSniffer
 
 script:
   ## PHP_CodeSniffer
