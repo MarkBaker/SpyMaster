@@ -1,0 +1,27 @@
+{
+    "name": "SpyMaster/SpyMaster",
+    "description": "SpyMaster is a small library, for use in testing, that allows access to verify the values of protected and private properties in a class that is being tested, without needing to modify the class using Reflection.",
+    "keywords": [
+        "library",
+        "spy",
+        "test",
+        "testing"
+    ],
+    "homepage": "http://github.com/SpyMaster/SpyMaster",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mark Baker",
+            "email": "mark@lange.demon.co.uk",
+            "homepage": "http://markbakeruk.net"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "SpyMaster": "classes/src/"
+        }
+    }
+}
