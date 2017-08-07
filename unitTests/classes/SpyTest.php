@@ -14,6 +14,15 @@ class SpyTest extends \PHPUnit_Framework_TestCase
         $this->targetObject = new \testing\testClassForSpy();
     }
 
+    public function testSpyHasClassName()
+    {
+        $spyMaster = new SpyMaster($this->targetObject);
+        
+        $spy = $spyMaster->infiltrate();
+        $className = $spy->getClassName();
+        $this->assertEquals($className, 'testing\\testClassForSpy');
+    }
+
     public function testSpyHasProperties()
     {
         $spyMaster = new SpyMaster($this->targetObject);

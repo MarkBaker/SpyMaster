@@ -6,9 +6,12 @@ use SpyMaster\Exception as Exception;
 
 abstract class Spy
 {
+    protected $className;
+
     protected $targetProperties;
 
-    public function __construct(&$properties) {
+    public function __construct($className, &$properties) {
+        $this->className = $className;
         foreach ($properties as $propertyName => &$propertyValue) {
             $this->targetProperties[$propertyName] = &$propertyValue;
         }
@@ -36,5 +39,9 @@ abstract class Spy
 
     public function listProperties() {
         return array_keys($this->targetProperties);
+    }
+
+    public function getClassName() {
+        return $this->className;
     }
 }

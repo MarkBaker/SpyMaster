@@ -31,12 +31,13 @@ class SpyMaster
 
     protected function getHandlerReadOnly() {
         return function() {
+            $className = get_class($this);
             $properties = [];
             foreach (array_keys(get_object_vars($this)) as $propertyName) {
                 $properties[$propertyName] = &$this->$propertyName;
             }
 
-            return new class ($properties) extends Spy {
+            return new class ($className, $properties) extends Spy {
                 use Traits\ReadOnly;
             };
         };
@@ -44,12 +45,13 @@ class SpyMaster
 
     protected function getHandlerReadWrite() {
         return function() {
+            $className = get_class($this);
             $properties = [];
             foreach (array_keys(get_object_vars($this)) as $propertyName) {
                 $properties[$propertyName] = &$this->$propertyName;
             }
 
-            return new class ($properties) extends Spy {
+            return new class ($className, $properties) extends Spy {
                 use Traits\ReadWrite;
             };
         };
