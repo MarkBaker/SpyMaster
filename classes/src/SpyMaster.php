@@ -67,7 +67,12 @@ class SpyMaster
 
     protected function getHandler($type)
     {
-        $handlerName = __FUNCTION__ . self::adjustTypeName($type);
+        if (!in_array($type, self::$spyTypes)) {
+            throw new Exception(sprintf('SpyMaster does not support %s spies', $type));
+        }
+
+        $type = self::adjustTypeName($type);
+        $handlerName = __FUNCTION__ . $type;
         if (!method_exists($this, $handlerName)) {
             throw new Exception(sprintf('SpyMaster does not support %s spies', $type));
         }
