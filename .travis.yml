@@ -24,17 +24,17 @@ efore_script:
 
 script:
   ## PHP_CodeSniffer
-  - ./vendor/bin/phpcs src/ tests/ --standard=PSR2 -n
+  - ./vendor/bin/phpcs .classes/ ./unitTests/ --standard=PSR2 -n
   ## PHP Copy/Paste Detector
-  # - ./vendor/bin/phpcpd src/
+  # - ./vendor/bin/phpcpd ./classes/
   ## PHP Mess Detector
-  - ./vendor/bin/phpmd src/,tests/ text ./phpmd.xml.dist
+  - ./vendor/bin/phpmd ./classes/,./unitTests/ text ./phpmd.xml.dist
   ## PHPUnit
-  - ./vendor/bin/phpunit -c ./ --coverage-text --coverage-html ./build/coverage
+  - ./vendor/bin/phpunit -c ./unitTests/ --coverage-text --coverage-html ./build/coverage
   ## PHPLOC
-  - ./vendor/bin/phploc src/
+  - ./vendor/bin/phploc ./classes/
   ## PHPDocumentor
-  - ./vendor/bin/phpdoc -q -d ./src -t ./build/docs --template="responsive-twig"
+  - ./vendor/bin/phpdoc -q -d ./classes -t ./build/docs --template="responsive-twig"
 
 notifications:
   email: false
