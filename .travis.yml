@@ -19,12 +19,12 @@ before_script:
   - composer install --no-interaction
   - phpenv global "$TRAVIS_PHP_VERSION"
   ## Codesniffer
-  - pear install pear/PHP_CodeSniffer
+  - pyrus install pear/PHP_CodeSniffer
   - phpenv rehash
 
 script:
   ## PHP_CodeSniffer
-  - ./vendor/bin/phpcs --report-width=200 --report-summary  --report-full Classes/ unitTests/ --standard=PSR2 -n
+  - phpcs --report-width=200 --report-summary  --report-full Classes/ unitTests/ --standard=PSR2 -n
   ## PHPUnit
   - phpunit -c ./unitTests/
 
