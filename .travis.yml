@@ -19,7 +19,7 @@ before_script:
   - composer install --no-interaction
   - phpenv global "$TRAVIS_PHP_VERSION"
   ## Codesniffer
-  - pyrus install pear/PHP_CodeSniffer
+  - pear install pear/PHP_CodeSniffer
   - phpenv rehash
 
 script:
