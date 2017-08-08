@@ -18,8 +18,9 @@ before_script:
   - composer install --prefer-source --dev
   - composer install --no-interaction
   - phpenv global "$TRAVIS_PHP_VERSION"
-  - cp .env.travis .env
+  ## Codesniffer
   - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
 
 script:
   ## PHP_CodeSniffer
