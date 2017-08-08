@@ -24,17 +24,17 @@ before_script:
 
 script:
   ## PHP_CodeSniffer
-  - ./vendor/bin/phpcs ./classes/ ./unitTests/ --standard=PSR2 -n
+  - ./vendor/bin/phpcs ./classes/src/ ./unitTests/ --standard=PSR2 -n
   ## PHP Copy/Paste Detector
-  # - ./vendor/bin/phpcpd ./classes/
+  # - ./vendor/bin/phpcpd ./classes/src/
   ## PHP Mess Detector
-  - ./vendor/bin/phpmd ./classes/,./unitTests/ text ./phpmd.xml.dist
+  - ./vendor/bin/phpmd ./classes/src/,./unitTests/ text ./phpmd.xml.dist
   ## PHPUnit
   - ./vendor/bin/phpunit -c ./unitTests/ --coverage-text --coverage-html ./build/coverage
   ## PHPLOC
-  - ./vendor/bin/phploc ./classes/
+  - ./vendor/bin/phploc ./classes/src/
   ## PHPDocumentor
-  - ./vendor/bin/phpdoc -q -d ./classes -t ./build/docs --template="responsive-twig"
+  - ./vendor/bin/phpdoc -q -d ./classes/src -t ./build/docs --template="responsive-twig"
 
 notifications:
   email: false

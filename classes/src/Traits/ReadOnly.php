@@ -6,7 +6,8 @@ use SpyMaster\Exception as Exception;
 
 trait ReadOnly
 {
-    public function __set($propertyName, $propertyValue) {
+    public function __set($propertyName, $propertyValue)
+    {
         if (!array_key_exists($propertyName, $this->targetProperties)) {
             throw new Exception("Property {$propertyName} does not exist");
         }

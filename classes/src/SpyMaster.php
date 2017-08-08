@@ -17,7 +17,8 @@ class SpyMaster
     
     private $targetObject;
 
-    public function __construct($targetObject = null) {
+    public function __construct($targetObject = null)
+    {
         if (is_null($targetObject)) {
             throw new Exception('You must specify the object that you want to spy on');
         } elseif (!is_object($targetObject)) {
@@ -29,8 +30,9 @@ class SpyMaster
         $this->targetObject = $targetObject;
     }
 
-    protected function getHandlerReadOnly() {
-        return function() {
+    protected function getHandlerReadOnly()
+    {
+        return function () {
             $className = get_class($this);
             $properties = [];
             foreach (array_keys(get_object_vars($this)) as $propertyName) {
@@ -43,8 +45,9 @@ class SpyMaster
         };
     }
 
-    protected function getHandlerReadWrite() {
-        return function() {
+    protected function getHandlerReadWrite()
+    {
+        return function () {
             $className = get_class($this);
             $properties = [];
             foreach (array_keys(get_object_vars($this)) as $propertyName) {
@@ -57,11 +60,13 @@ class SpyMaster
         };
     }
 
-    private static function adjustTypeName($value) {
+    private static function adjustTypeName($value)
+    {
         return str_replace('-', '', ucwords(strtolower($value), " -_"));
     }
 
-    protected function getHandler($type) {
+    protected function getHandler($type)
+    {
         $handlerName = __FUNCTION__ . self::adjustTypeName($type);
         if (!method_exists($this, $handlerName)) {
             throw new Exception(sprintf('SpyMaster does not support %s spies', $type));
@@ -70,7 +75,8 @@ class SpyMaster
         return $this->$handlerName();
     }
 
-    public function infiltrate($type = self::SPY_READ_ONLY) {
+    public function infiltrate($type = self::SPY_READ_ONLY)
+    {
         $anonymous = $this->getHandler($type);
 
         $spy = $anonymous->bindTo($this->targetObject, get_class($this->targetObject));

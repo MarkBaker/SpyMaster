@@ -10,14 +10,16 @@ abstract class Spy
 
     protected $targetProperties;
 
-    public function __construct($className, &$properties) {
+    public function __construct($className, &$properties)
+    {
         $this->className = $className;
         foreach ($properties as $propertyName => &$propertyValue) {
             $this->targetProperties[$propertyName] = &$propertyValue;
         }
     }
 
-    public function __get($propertyName) {
+    public function __get($propertyName)
+    {
         if (array_key_exists($propertyName, $this->targetProperties)) {
             return $this->targetProperties[$propertyName];
         }
@@ -25,11 +27,13 @@ abstract class Spy
         throw new Exception("Property {$propertyName} does not exist");
     }
 
-    public function __isset($propertyName) {
+    public function __isset($propertyName)
+    {
         return array_key_exists($propertyName, $this->targetProperties);
     }
 
-    public function __unset($propertyName) {
+    public function __unset($propertyName)
+    {
         if (array_key_exists($propertyName, $this->targetProperties)) {
             throw new Exception('Spies are not permitted to unset properties');
         }
@@ -37,11 +41,13 @@ abstract class Spy
         throw new Exception("Property {$propertyName} does not exist");
     }
 
-    public function listProperties() {
+    public function listProperties()
+    {
         return array_keys($this->targetProperties);
     }
 
-    public function getClassName() {
+    public function getClassName()
+    {
         return $this->className;
     }
 }
