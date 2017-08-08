@@ -24,7 +24,7 @@ before_script:
 
 script:
   ## PHP_CodeSniffer
-  - ./vendor/bin/phpcs .classes/ ./unitTests/ --standard=PSR2 -n
+  - ./vendor/bin/phpcs ./classes/ ./unitTests/ --standard=PSR2 -n
   ## PHP Copy/Paste Detector
   # - ./vendor/bin/phpcpd ./classes/
   ## PHP Mess Detector
