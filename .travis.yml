@@ -28,13 +28,13 @@ script:
   ## PHP Copy/Paste Detector
   # - ./vendor/bin/phpcpd ./classes/src/
   ## PHP Mess Detector
-  - ./vendor/bin/phpmd ./classes/src/,./unitTests/ text ./phpmd.xml.dist
+  - ./vendor/bin/phpmd ./classes/src/ text ./phpmd.xml.dist
   ## PHPUnit
   - ./vendor/bin/phpunit -c ./unitTests/ --coverage-text --coverage-html ./build/coverage
   ## PHPLOC
   - ./vendor/bin/phploc ./classes/src/
   ## PHPDocumentor
-  - ./vendor/bin/phpdoc -q -d ./classes/src -t ./build/docs --template="responsive-twig"
+  ## - ./vendor/bin/phpdoc -q -d ./classes/src -t ./build/docs --template="responsive-twig"
 
 notifications:
   email: false
