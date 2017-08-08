@@ -10,23 +10,31 @@ matrix:
   allow_failures:
     - php: hhvm
 
-before_script:
+before_install:
   ## Packages
-  - sudo apt-get -qq update > /dev/null
+  - sudo apt-get -qq update
+
+efore_script:
   ## Composer
   - composer self-update
-  - composer install --prefer-source --dev
-  - composer install --no-interaction
-  - phpenv global "$TRAVIS_PHP_VERSION"
-  ## Codesniffer
-  - pear install pear/PHP_CodeSniffer
-  - phpenv rehash
+  - composer install --prefer-source
+  ## PHPDocumentor
+  - mkdir -p build/docs
+  - mkdir -p build/coverage
 
 script:
   ## PHP_CodeSniffer
-  - phpcs --report-width=200 --report-summary  --report-full Classes/ unitTests/ --standard=PSR2 -n
+  - ./vendor/bin/phpcs src/ tests/ --standard=PSR2 -n
+  ## PHP Copy/Paste Detector
+  # - ./vendor/bin/phpcpd src/
+  ## PHP Mess Detector
+  - ./vendor/bin/phpmd src/,tests/ text ./phpmd.xml.dist
   ## PHPUnit
-  - phpunit -c ./unitTests/
+  - ./vendor/bin/phpunit -c ./ --coverage-text --coverage-html ./build/coverage
+  ## PHPLOC
+  - ./vendor/bin/phploc src/
+  ## PHPDocumentor
+  - ./vendor/bin/phpdoc -q -d ./src -t ./build/docs --template="responsive-twig"
 
 notifications:
   email: false
