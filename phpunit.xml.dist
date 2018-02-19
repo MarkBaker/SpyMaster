@@ -16,7 +16,7 @@
     <php>
         <ini name="memory_limit" value="2048M"/>
     </php>
-    <testsuite name="Complex Unit Test Suite">
+    <testsuite name="SpyMaster Test Suite">
         <directory suffix="Test.php">./unitTests/classes</directory>
     </testsuite>
     <filter>

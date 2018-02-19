@@ -4,8 +4,6 @@ include('../classes/Bootstrap.php');
 
 use SpyMaster\SpyMaster as SpyMaster;
 
-
-
 // You can't use SpyMaster to access PHP built-in classes
 $dto = new DateTime();
 

@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0"
+        "php": "^7.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
@@ -25,11 +25,13 @@
         "phpmd/phpmd": "2.*",
         "sebastian/phpcpd": "2.*",
         "phploc/phploc": "2.*",
-        "squizlabs/php_codesniffer": "2.*"
+        "squizlabs/php_codesniffer": "2.*",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
     },
     "autoload": {
         "psr-4": {
             "SpyMaster\\": "classes/src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }

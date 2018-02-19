@@ -6,7 +6,6 @@ include('./sampleClasses/Distance.php');
 
 use SpyMaster\SpyMaster as SpyMaster;
 
-
 // Instantiate Distance object with constructor arguments of 10 miles
 // This will be converted to metres internally
 $distance = new Distance(10, Distance::MILES);
