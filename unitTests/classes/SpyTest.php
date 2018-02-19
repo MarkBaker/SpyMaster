@@ -4,7 +4,7 @@ namespace SpyMaster;
 
 include APPLICATION_DATA_PATH . '/testClassForSpy.php';
 
-class SpyTest extends \PHPUnit_Framework_TestCase
+class SpyTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $targetObject;
