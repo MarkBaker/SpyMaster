@@ -1,5 +1,5 @@
 {
-    "name": "spymaster/spymaster",
+    "name": "markbaker/spymaster",
     "description": "SpyMaster is a small library, for use in testing, that allows access to verify the values of protected and private properties in a class that is being tested, without needing to modify the class using Reflection.",
     "keywords": [
         "library",

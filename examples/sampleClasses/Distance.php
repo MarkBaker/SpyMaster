@@ -1,43 +1,52 @@
 <?php
 
-abstract class Measure_Abstract {
+abstract class Measure_Abstract
+{
     protected $value = 0.0;
 
-    protected static function convertToBaseUnits($value = 0.0, $uom = NULL) {
+    protected static function convertToBaseUnits($value = 0.0, $uom = null)
+    {
         $value = self::validateConversion($value, $uom);
         $factor = static::$conversions[$uom];
 
         return $value * $factor;
     }
 
-    protected static function convertFromBaseUnits($value = 0.0, $uom = NULL) {
+    protected static function convertFromBaseUnits($value = 0.0, $uom = null)
+    {
         $value = self::validateConversion($value, $uom);
         $factor = static::$conversions[$uom];
 
         return $value / $factor;
     }
 
-    protected static function validateConversion($value, $uom) {
-        if (!is_numeric($value))
+    protected static function validateConversion($value, $uom)
+    {
+        if (!is_numeric($value)) {
             throw new Exception(static::class . ' must be a numeric value');
+        }
         $value = (float) $value;
 
-        if (is_null($uom))
+        if (is_null($uom)) {
             throw new Exception('Unit of Measure must be specified');
+        }
 
-        if (!isset(static::$conversions[$uom]))
+        if (!isset(static::$conversions[$uom])) {
             throw new Exception($uom . ' is not a recognised Unit of Measure for ' . static::class);
+        }
         return $value;
 
     }
 
-    public static function getUOMs() {
+    public static function getUOMs()
+    {
         return array_keys(static::$conversions);
     }
 }
 
 
-class Distance extends Measure_Abstract {
+class Distance extends Measure_Abstract
+{
     const METRES          = 'm';      //    metre (SI base unit)
     const KILOMETRES      = 'km';     //    1000 metres (SI unit)
     const MILES           = 'mi';     //    mile (International)
@@ -60,14 +69,18 @@ class Distance extends Measure_Abstract {
 
     const DEFAULT_UNIT = self::METRES;
 
-    function __construct($value = NULL, $uom = self::DEFAULT_UNIT) {
-        if (!is_null($value))
+    public function __construct($value = null, $uom = self::DEFAULT_UNIT)
+    {
+        if (!is_null($value)) {
             $this->setValue($value, $uom);
+        }
     }
 
-    public function setValue($distance = 0.0, $uom = self::DEFAULT_UNIT) {
-        if (!is_numeric($distance))
+    public function setValue($distance = 0.0, $uom = self::DEFAULT_UNIT)
+    {
+        if (!is_numeric($distance)) {
             throw new Exception(static::class . ' must be a numeric value');
+        }
         if (is_null($uom)) {
             $uom = static::DEFAULT_UNIT;
         } elseif (!in_array($uom, self::getUOMs())) {
@@ -77,7 +90,8 @@ class Distance extends Measure_Abstract {
         $this->value = self::convertToBaseUnits($distance, $uom);
     }
 
-    public function getValue($uom = self::DEFAULT_UNIT) {
+    public function getValue($uom = self::DEFAULT_UNIT)
+    {
         if (is_null($uom)) {
             $uom = static::DEFAULT_UNIT;
         } elseif (!in_array($uom, self::getUOMs())) {

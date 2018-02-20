@@ -2,7 +2,8 @@
 
 namespace testing;
 
-class testClassForSpy {
+class testClassForSpy
+{
 
     public $public = 'Hello';
     

@@ -34,10 +34,10 @@ class Autoloader
         $pClassFilePath = __DIR__ . DIRECTORY_SEPARATOR .
                           'src' . DIRECTORY_SEPARATOR .
                           str_replace(
-                                '\\', 
-                                '/',
-                                str_replace('SpyMaster\\', '', $pClassName)
-                            ) .
+                              '\\',
+                              '/',
+                              str_replace('SpyMaster\\', '', $pClassName)
+                          ) .
                           '.php';
 
         if ((file_exists($pClassFilePath) === false) || (is_readable($pClassFilePath) === false)) {

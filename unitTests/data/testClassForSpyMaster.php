@@ -2,5 +2,6 @@
 
 namespace testing;
 
-class testClassForSpyMaster {
+class testClassForSpyMaster
+{
 }

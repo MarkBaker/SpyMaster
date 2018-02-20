@@ -15,7 +15,7 @@ Develop: [![Build Status](https://travis-ci.org/MarkBaker/SpyMaster.png?branch=d
 Using composer, either
 
 ```
-composer require spymaster/spymaster
+composer require markbaker/spymaster
 ```
 or add the library to your existing composer.json file, and let composer's own autoloader work its magic.
 
