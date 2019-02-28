@@ -16,22 +16,20 @@ cache:
     - $HOME/.cache/composer/files
 
 php:
-  - 7.2
+  - 7.1
+  - 7.4snapshot
   - nightly
-  - hhvm
 
 matrix:
   fast_finish: true
   include:
-    - php: 7.1
+    - php: 7.2
       env: EXTRA_CHECKS=1
     - php: 7.3
       env: COVERAGE=1
     - php: 7.0
       env: COVERAGE=1
-      dist: precise
   allow_failures:
-    - php: hhvm
     - php: nightly
 
 before_install:

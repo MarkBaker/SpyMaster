@@ -1,12 +1,7 @@
 {
     "name": "markbaker/spymaster",
     "description": "SpyMaster is a small library, for use in testing, that allows access to verify the values of protected and private properties in a class that is being tested, without needing to modify the class using Reflection.",
-    "keywords": [
-        "library",
-        "spy",
-        "test",
-        "testing"
-    ],
+    "keywords": ["library", "spy", "test", "testing"],
     "homepage": "http://github.com/MarkBaker/SpyMaster",
     "license": "MIT",
     "authors": [
@@ -20,18 +15,36 @@
         "php": "^7.0.0"
     },
     "require-dev": {
+        "squizlabs/php_codesniffer": "3.3.2",
+        "phpmd/phpmd": "2.6.0",
         "phpunit/phpunit": "^5.4.0",
         "phpdocumentor/phpdocumentor":"2.*",
-        "phpmd/phpmd": "2.*",
         "sebastian/phpcpd": "2.*",
         "phploc/phploc": "2.*",
-        "squizlabs/php_codesniffer": "^3.1.1",
+        "phpcompatibility/php-compatibility": "^8.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
     },
     "autoload": {
         "psr-4": {
             "SpyMaster\\": "classes/src/"
         }
+    },
+    "scripts": {
+        "style": [
+            "phpcs --report-width=200 --report-summary  --report-full classes/src/ --standard=PSR2 -n"
+        ],
+        "mess": [
+            "phpmd classes/src/ xml codesize,unusedcode,design,naming -n"
+        ],
+        "lines": [
+            "phploc classes/src/ -n"
+        ],
+        "cpd": [
+            "phpcpd classes/src/ -n"
+        ],
+        "versions": [
+            "phpcs --report-width=200 --report-summary  --report-full classes/src/ --standard=PHPCompatibility --runtime-set testVersion 7.0- -n"
+        ]
     },
     "minimum-stability": "dev"
 }
