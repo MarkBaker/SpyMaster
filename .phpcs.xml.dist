@@ -14,6 +14,7 @@
 
     <!-- Do not check the vendor directory. -->
     <exclude-pattern>/vendor/*</exclude-pattern>
+    <exclude-pattern>/examples/sampleClasses/*</exclude-pattern>
     <exclude-pattern>/unitTests/data/*</exclude-pattern>
     <exclude-pattern>/unitTests/bootstrap.php</exclude-pattern>
 
