@@ -9,7 +9,7 @@ class SpyTest extends \PHPUnit\Framework\TestCase
 
     protected $targetObject;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->targetObject = new \testing\testClassForSpy();
     }
@@ -62,16 +62,15 @@ class SpyTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($privatePropertyValue, 'ElePHPant');
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Property nonExistent does not exist
-     */
     public function testSpyGetNonExistentProperty()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('Property nonExistentProperty does not exist');
+
         $spyMaster = new SpyMaster($this->targetObject);
         
         $spy = $spyMaster->infiltrate();
-        $privatePropertyValue = $spy->nonExistent;
+        $privatePropertyValue = $spy->nonExistentProperty;
     }
 
     public function testSpyPropertyIsSet()
@@ -85,36 +84,33 @@ class SpyTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($nonExistentPropertyExists);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Spies are not permitted to unset properties
-     */
     public function testSpyPropertyUnset()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('Spies are not permitted to unset properties');
+
         $spyMaster = new SpyMaster($this->targetObject);
         
         $spy = $spyMaster->infiltrate();
         unset($spy->private);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Property nonExistent does not exist
-     */
     public function testSpyNonExistentPropertyUnset()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('Property nonExistentProperty does not exist');
+
         $spyMaster = new SpyMaster($this->targetObject);
         
         $spy = $spyMaster->infiltrate();
-        unset($spy->nonExistent);
+        unset($spy->nonExistentProperty);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage ReadOnly Spies are not permitted to change property values
-     */
     public function testReadOnlySpyCannotChangeProperty()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('ReadOnly Spies are not permitted to change property values');
+
         $spyMaster = new SpyMaster($this->targetObject);
         
         $spy = $spyMaster->infiltrate();
@@ -133,15 +129,14 @@ class SpyTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($privatePropertyValue, 'PHP');
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Property nonExistent does not exist
-     */
     public function testReadWriteSpySetNonExistentProperty()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('Property nonExistentProperty does not exist');
+
         $spyMaster = new SpyMaster($this->targetObject);
         
         $spy = $spyMaster->infiltrate(SpyMaster::SPY_READ_WRITE);
-        $spy->nonExistent = 'PHP';
+        $spy->nonExistentProperty = 'PHP';
     }
 }

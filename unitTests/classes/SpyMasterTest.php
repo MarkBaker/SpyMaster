@@ -9,7 +9,7 @@ class SpyMasterTest extends \PHPUnit\Framework\TestCase
 
     protected $targetObject;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->targetObject = new \testing\testClassForSpyMaster();
     }
@@ -22,30 +22,27 @@ class SpyMasterTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf('SpyMaster\\SpyMaster', $spyMaster);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage You must specify the object that you want to spy on
-     */
     public function testInstantiateWithoutObject()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('You must specify the object that you want to spy on');
+
         $spyMaster = new SpyMaster();
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Argument must be an object
-     */
     public function testInstantiateWithNonObject()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('Argument must be an object');
+
         $spyMaster = new SpyMaster(true);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage SpyMaster is unable to access PHP internal classes
-     */
     public function testInstantiateWithInternalObject()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('SpyMaster is unable to access PHP internal classes');
+
         $dto = new \DateTime();
 
         $spyMaster = new SpyMaster($dto);
@@ -71,12 +68,11 @@ class SpyMasterTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf('SpyMaster\\Spy', $spy);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage SpyMaster does not support Saboteur spies
-     */
     public function testInfiltrateInvalidSpy()
     {
+        self::expectException(Exception::class);
+        self::expectExceptionMessage('SpyMaster does not support Saboteur spies');
+
         $spyMaster = new SpyMaster($this->targetObject);
         
         $spy = $spyMaster->infiltrate('Saboteur');
