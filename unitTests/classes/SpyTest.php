@@ -8,7 +8,6 @@ include APPLICATION_DATA_PATH . '/testClassForSpy.php';
 
 class SpyTest extends XTestCase
 {
-
     protected $targetObject;
 
     /**
