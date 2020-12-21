@@ -14,7 +14,7 @@ class SpyTest extends XTestCase
     /**
      * @before
      */
-    protected function setUpFixtures()
+    public function setUpFixtures()
     {
         parent::setUpFixtures();
 
