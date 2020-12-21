@@ -33,6 +33,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+require_once('./vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php');
+
 /**
  * @todo Sort out xdebug in vagrant so that this works in all sandboxes
  * For now, it is safer to test for it rather then remove it.
