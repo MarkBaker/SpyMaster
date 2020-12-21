@@ -77,5 +77,4 @@ class SpyMasterTest extends \PHPUnit\Framework\TestCase
         
         $spy = $spyMaster->infiltrate('Saboteur');
     }
-
 }
