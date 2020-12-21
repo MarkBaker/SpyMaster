@@ -2,15 +2,22 @@
 
 namespace SpyMaster;
 
+use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
+
 include APPLICATION_DATA_PATH . '/testClassForSpy.php';
 
-class SpyTest extends \PHPUnit\Framework\TestCase
+class SpyTest extends XTestCase
 {
 
     protected $targetObject;
 
-    protected function setUp(): void
+    /**
+     * @before
+     */
+    protected function setUpFixtures()
     {
+        parent::setUpFixtures();
+
         $this->targetObject = new \testing\testClassForSpy();
     }
 
