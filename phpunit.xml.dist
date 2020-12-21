@@ -19,7 +19,7 @@
     </testsuite>
     <filter>
         <whitelist>
-            <directory suffix=".php">../unitTests/classes</directory>
+            <directory suffix=".php">./classes/src</directory>
         </whitelist>
     </filter>
     <logging>
