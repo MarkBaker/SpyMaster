@@ -88,6 +88,7 @@ class SpyMaster
         if ($spy === false) {
             throw new Exception(sprintf('SpyMaster is unable to bind Spy to instance of %s', get_class($this->targetObject)));
         }
+
         return $spy();
     }
 }
