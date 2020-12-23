@@ -133,6 +133,9 @@ class SpyTest extends XTestCase
         $spy->private = 'PHP';
         $privatePropertyValue = $spy->private;
         $this->assertEquals($privatePropertyValue, 'PHP');
+        $spy->private .= '8';
+        $privatePropertyValue = $spy->private;
+        $this->assertEquals($privatePropertyValue, 'PHP8');
     }
 
     public function testReadWriteSpySetNonExistentProperty()
