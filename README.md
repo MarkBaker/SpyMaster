@@ -17,7 +17,7 @@ composer require markbaker/spymaster
 ```
 or add the library to your existing composer.json file, and let composer's own autoloader work its magic.
 
-Or you can download the files from github, and include the bootstrap.php fie to enable the SpyMaster autoloader
+Or you can download the files from github, and include the bootstrap.php file to enable the SpyMaster autoloader
 
 
 ## Usage
