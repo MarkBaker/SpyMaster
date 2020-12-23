@@ -1,5 +1,5 @@
 # SpyMaster - Create "Spies" to access the protected and private properties of a class being tested 
-SpyMaster is a small library, for use in testing, that allows access to verify the values of protected and private properties in a class that is being tested, without needing to modify the class using Reflection.
+SpyMaster is a small library, for use in testing, that allows access to verify the values of protected and private properties in a class that is being tested, or execution of protected or private methods, without needing to modify the class using Reflection.
 
 [![Build Status](https://github.com/MarkBaker/SpyMaster/workflows/main/badge.svg)](https://github.com/MarkBaker/SpyMaster/actions)
 [![License](https://img.shields.io/github/license/PHPOffice/PhpSpreadsheet)](https://packagist.org/packages/markbaker/spymaster)
@@ -49,13 +49,28 @@ $spy = (new SpyMaster\SpyMaster($myObject))
 // Access the $value property of $myObject
 // Any property of $myObject can be accessed, whether it is public, protected or private
 echo $spy->value;
+
 // A Read-Write Spy also allows you to set new values for those properties
-$spy->value = 1000;
+$spy->value += 1000;
 echo $spy->value;
 ```
 
 Spies cannot unset properties, nor can they access properties that are created dynamically after the Spy is infiltrated.
 
+To execute private or protected methods inside an object, you can use a `Manipulator`.
+
+```
+// Instantiate your object
+$myObject = new myObject();
+
+// Create a Manipulator
+$Manipulator = new Manipulator();
+
+// Call the Manipulator's execute() method, passing in the object and name of the method to execute, together with any arguments
+$result = $Manipulator->execute($myObject, 'add', 3, 5);
+// This example would execute the add() method of the myObject instance with arguments 3 and 5
+
+```
 
 ## License
 SpyMaster is published under the [MIT](https://github.com/MarkBaker/SpyMaster/blob/master/license.md) license
